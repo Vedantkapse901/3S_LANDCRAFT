@@ -180,11 +180,6 @@ export default function CinematicFilm() {
           <p className="mt-3 text-[10px] tracking-[0.3em] uppercase text-ink-dim">Scroll</p>
         </div>
 
-        {!ready && !unavailable && (
-          <div className="absolute bottom-[3vh] left-1/2 z-20 -translate-x-1/2 text-[10px] tracking-[0.2em] uppercase text-ink-dim/70">
-            Loading film — {Math.round(loadProgress * 100)}%
-          </div>
-        )}
       </div>
     </section>
   );

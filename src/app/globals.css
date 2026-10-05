@@ -20,8 +20,6 @@
   --color-stone: var(--stone);
   --color-bronze: var(--bronze);
   --color-green: var(--green);
-  --font-display: var(--font-fraunces);
-  --font-sans: var(--font-inter);
 }
 
 * {
@@ -36,9 +34,12 @@ html {
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  letter-spacing: 0.3px;
 }
 
 ::selection {
@@ -71,11 +72,13 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: var(--font-display), ui-serif, Georgia, serif;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.02;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
   margin: 0;
+  font-style: italic;
+  text-transform: capitalize;
 }
 
 p {
@@ -96,9 +99,12 @@ a {
 
 .lead {
   color: var(--ink-dim);
-  font-size: clamp(14px, 1.25vw, 18px);
-  line-height: 1.7;
-  max-width: 46ch;
+  font-size: clamp(15px, 1.25vw, 19px);
+  line-height: 1.8;
+  max-width: 48ch;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 400;
+  letter-spacing: 0.2px;
 }
 
 /* premium ghost CTA — never a filled bootstrap button */
@@ -106,33 +112,59 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 30px;
-  border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
-  border-radius: 999px;
-  font-size: 11px;
-  letter-spacing: 0.28em;
+  padding: 14px 38px;
+  border: 2px solid var(--bronze);
+  border-radius: 50px;
+  font-size: 12px;
+  font-family: "Times New Roman", Times, serif;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--ink);
   background: transparent;
-  transition: border-color 0.35s ease, color 0.35s ease, background 0.35s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   white-space: nowrap;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(184, 144, 90, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-ring::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--bronze);
+  transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
 }
 
 .cta-ring:hover {
   border-color: var(--bronze);
-  color: var(--bronze);
-  background: color-mix(in srgb, var(--bronze) 8%, transparent);
+  color: var(--bg);
+  box-shadow: 0 8px 25px rgba(184, 144, 90, 0.25);
+  transform: translateY(-2px);
+}
+
+.cta-ring:hover::before {
+  left: 0;
 }
 
 .cta-ring.solid {
   background: var(--bronze);
   color: var(--bg);
   border-color: var(--bronze);
+  box-shadow: 0 6px 20px rgba(184, 144, 90, 0.3);
 }
 
 .cta-ring.solid:hover {
-  background: color-mix(in srgb, var(--bronze) 85%, white);
+  background: var(--bronze);
+  border-color: #d4b896;
+  box-shadow: 0 10px 30px rgba(184, 144, 90, 0.4);
+  transform: translateY(-3px);
 }
 
 /* image rectangle → melts into the page */
@@ -189,8 +221,87 @@ a {
   }
 }
 
+/* Enhanced link styling */
+a {
+  text-decoration: none;
+  position: relative;
+}
+
+a:not(.cta-ring):not(.skip-link) {
+  color: var(--bronze);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(184, 144, 90, 0.5);
+}
+
+a:not(.cta-ring):not(.skip-link):hover {
+  color: #d4b896;
+  border-bottom-color: #d4b896;
+}
+
+/* Enhanced focus states */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--bronze);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Improved section styling */
+.section {
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+input,
+textarea,
+select {
+  transition: all 0.3s ease;
+}
+
+/* Enhanced text selection */
+::selection {
+  background: var(--bronze);
+  color: var(--bg);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+::-moz-selection {
+  background: var(--bronze);
+  color: var(--bg);
+}
+
+/* Improved readability with better line-height */
+p {
+  line-height: 1.65;
+}
+
+/* Modern form styling */
+input, textarea {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  color: var(--ink);
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  padding: 12px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--bronze);
+  background: color-mix(in srgb, var(--bg-elev) 80%, var(--bronze) 10%);
+  box-shadow: 0 0 0 3px rgba(184, 144, 90, 0.1);
+}
+
 @media (max-width: 720px) {
   .section {
     padding: 11vh 6vw;
+  }
+
+  h1, h2, h3, h4 {
+    font-size: clamp(18px, 5vw, 32px);
   }
 }

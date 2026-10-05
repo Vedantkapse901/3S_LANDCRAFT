@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
+const timesNewRoman = {
+  variable: "--font-times-new-roman",
   style: ["normal", "italic"],
-  axes: ["opsz", "SOFT", "WONK"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-});
+};
 
 const title = "3S Landcraft — A Mountain Retreat in Kashedi";
 const description =
@@ -44,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fraunces.variable} ${inter.variable} antialiased`}>
+      <body className="antialiased">
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
